@@ -261,9 +261,7 @@ function showResults(beer, confidence = 50) {
   previewContainer.classList.remove('visible');
   results.classList.add('visible');
   
-  if (confidence > 0.4) {
-    playSound();
-  }
+  playSound();
 }
 
 function showNextMatch() {
