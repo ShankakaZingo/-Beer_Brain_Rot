@@ -51,11 +51,19 @@ async function loadModel() {
 }
 
 function playSound() {
-  audio.src = 'faaaahh.mp3';
-  audio.play().catch(() => {
-    console.log('Sound effect not found or playback blocked');
+  audio.src = 'https://shankakazingo.github.io/-Beer_Brain_Rot/faaaahh.mp3';
+  audio.volume = 0.7;
+  audio.play().catch(err => {
+    console.log('Audio play failed:', err);
   });
 }
+
+function preloadAudio() {
+  audio.src = 'https://shankakazingo.github.io/-Beer_Brain_Rot/faaaahh.mp3';
+  audio.load();
+}
+
+document.addEventListener('click', preloadAudio, { once: true });
 
 function extractDominantColor(img) {
   const canvas = document.createElement('canvas');
@@ -380,3 +388,4 @@ randomBtn.addEventListener('click', () => {
 tryAnotherBtn.addEventListener('click', showNextMatch);
 
 loadModel();
+preloadAudio();
