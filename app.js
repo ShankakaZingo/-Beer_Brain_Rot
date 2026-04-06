@@ -51,7 +51,7 @@ async function loadModel() {
 }
 
 function playSound() {
-  audio.src = 'FAHHH Meme Sound Effect.mp3';
+  audio.src = 'faaaahh.mp3';
   audio.play().catch(() => {
     console.log('Sound effect not found or playback blocked');
   });
