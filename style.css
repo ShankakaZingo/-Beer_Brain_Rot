@@ -1,0 +1,470 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Fira+Code:wght@400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --beer-gold: #f5a623;
+  --beer-dark: #1a1a2e;
+  --beer-foam: #fff5e6;
+  --beer-accent: #e74c3c;
+  --beer-success: #2ecc71;
+}
+
+body {
+  font-family: 'Fira Code', monospace;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+  min-height: 100vh;
+  color: var(--beer-foam);
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Bangers', cursive;
+  font-size: 3.5rem;
+  color: var(--beer-gold);
+  text-shadow: 
+    3px 3px 0 var(--beer-dark),
+    6px 6px 0 rgba(0,0,0,0.3);
+  letter-spacing: 3px;
+  margin: 30px 0;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #888;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.upload-area {
+  background: rgba(255,255,255,0.05);
+  border: 3px dashed var(--beer-gold);
+  border-radius: 20px;
+  padding: 60px 40px;
+  margin: 30px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-area:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: #ffcc00;
+  transform: scale(1.02);
+}
+
+.upload-area.dragover {
+  background: rgba(245, 166, 35, 0.2);
+  border-color: #ffcc00;
+}
+
+.upload-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.upload-text {
+  font-size: 1.2rem;
+  color: var(--beer-foam);
+}
+
+.upload-hint {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 10px;
+}
+
+#file-input {
+  display: none;
+}
+
+.preview-container {
+  display: none;
+  margin: 30px 0;
+  position: relative;
+}
+
+.preview-container.visible {
+  display: block;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 15px;
+  border: 4px solid var(--beer-gold);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.remove-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--beer-accent);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: transform 0.2s;
+}
+
+.remove-btn:hover {
+  transform: scale(1.1);
+}
+
+.analyze-btn {
+  background: linear-gradient(135deg, var(--beer-gold), #e8940e);
+  color: var(--beer-dark);
+  border: none;
+  padding: 20px 50px;
+  font-size: 1.3rem;
+  font-family: 'Bangers', cursive;
+  letter-spacing: 2px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(245, 166, 35, 0.4);
+  display: none;
+}
+
+.analyze-btn.visible {
+  display: inline-block;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.analyze-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(245, 166, 35, 0.6);
+}
+
+.analyze-btn:active {
+  transform: translateY(0);
+}
+
+.loading {
+  display: none;
+  margin: 30px 0;
+}
+
+.loading.visible {
+  display: block;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid rgba(245, 166, 35, 0.2);
+  border-top-color: var(--beer-gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  color: var(--beer-gold);
+  font-size: 1.1rem;
+}
+
+.results {
+  display: none;
+  margin: 40px 0;
+  animation: slideUp 0.5s ease-out;
+}
+
+.results.visible {
+  display: block;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-card {
+  background: linear-gradient(135deg, rgba(245, 166, 35, 0.15), rgba(245, 166, 35, 0.05));
+  border: 2px solid var(--beer-gold);
+  border-radius: 20px;
+  padding: 30px;
+  margin: 20px 0;
+}
+
+.beer-emoji {
+  font-size: 5rem;
+  margin-bottom: 10px;
+}
+
+.beer-name {
+  font-family: 'Bangers', cursive;
+  font-size: 2rem;
+  color: var(--beer-gold);
+  margin-bottom: 5px;
+}
+
+.beer-style {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.stat-box {
+  background: rgba(0,0,0,0.3);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--beer-foam);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 5px;
+}
+
+.stat-box.calories .stat-value {
+  color: var(--beer-accent);
+}
+
+.stat-box.steps .stat-value {
+  color: var(--beer-success);
+}
+
+.confidence {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(0,0,0,0.2);
+  border-radius: 10px;
+}
+
+.confidence-text {
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+.confidence-bar {
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.confidence-fill {
+  height: 100%;
+  background: var(--beer-gold);
+  border-radius: 3px;
+  transition: width 1s ease-out;
+}
+
+.manual-picker {
+  display: none;
+  margin: 40px 0;
+}
+
+.manual-picker.visible {
+  display: block;
+}
+
+.manual-picker h3 {
+  font-family: 'Bangers', cursive;
+  color: var(--beer-gold);
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.beer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.beer-grid::-webkit-scrollbar {
+  width: 8px;
+}
+
+.beer-grid::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+}
+
+.beer-grid::-webkit-scrollbar-thumb {
+  background: var(--beer-gold);
+  border-radius: 4px;
+}
+
+.beer-option {
+  background: rgba(255,255,255,0.05);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.beer-option:hover {
+  background: rgba(245, 166, 35, 0.2);
+  border-color: var(--beer-gold);
+  transform: scale(1.05);
+}
+
+.beer-option .emoji {
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.beer-option .name {
+  font-size: 0.75rem;
+  color: var(--beer-foam);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.beer-option .cal {
+  font-size: 0.65rem;
+  color: #888;
+  margin-top: 3px;
+}
+
+.retry-btn {
+  background: transparent;
+  border: 2px solid var(--beer-gold);
+  color: var(--beer-gold);
+  padding: 15px 30px;
+  font-size: 1rem;
+  font-family: 'Fira Code', monospace;
+  border-radius: 50px;
+  cursor: pointer;
+  margin: 20px 10px;
+  transition: all 0.3s ease;
+}
+
+.retry-btn:hover {
+  background: var(--beer-gold);
+  color: var(--beer-dark);
+}
+
+.try-another-btn {
+  background: transparent;
+  border: 2px solid var(--beer-success);
+  color: var(--beer-success);
+  padding: 15px 30px;
+  font-size: 1rem;
+  font-family: 'Fira Code', monospace;
+  border-radius: 50px;
+  cursor: pointer;
+  margin: 20px 10px;
+  transition: all 0.3s ease;
+}
+
+.try-another-btn:hover {
+  background: var(--beer-success);
+  color: var(--beer-dark);
+}
+
+.random-btn {
+  background: transparent;
+  border: 2px solid #888;
+  color: #888;
+  padding: 15px 30px;
+  font-size: 1rem;
+  font-family: 'Fira Code', monospace;
+  border-radius: 50px;
+  cursor: pointer;
+  margin: 20px 10px;
+  transition: all 0.3s ease;
+}
+
+.random-btn:hover {
+  border-color: var(--beer-gold);
+  color: var(--beer-gold);
+}
+
+.footer {
+  margin-top: 60px;
+  padding: 30px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: #555;
+  font-size: 0.8rem;
+}
+
+.footer span {
+  color: var(--beer-gold);
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  .upload-area {
+    padding: 40px 20px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .beer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

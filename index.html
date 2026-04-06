@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beer Brain Rot Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍺</text></svg>">
+</head>
+<body>
+  <div class="container">
+    <h1>BEER BRAIN ROT</h1>
+    <p class="subtitle">Find out how much you f*cked up your diet 🍺</p>
+    
+    <div class="upload-area" id="upload-area">
+      <div class="upload-icon">📸</div>
+      <p class="upload-text">Drop your beer pic here or click to upload</p>
+      <p class="upload-hint">Supports JPG, PNG, WebP</p>
+    </div>
+    <input type="file" id="file-input" accept="image/*">
+    
+    <div class="preview-container" id="preview-container">
+      <img src="" alt="Beer preview" class="preview-image" id="preview-image">
+      <button class="remove-btn" id="remove-btn">×</button>
+    </div>
+    
+    <button class="analyze-btn" id="analyze-btn">ANALYZE MY POOR CHOICES</button>
+    
+    <div class="loading" id="loading">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">AI is judging your beer...</p>
+    </div>
+    
+    <div class="results" id="results">
+      <div class="result-card">
+        <div class="beer-emoji" id="result-emoji">🍺</div>
+        <h2 class="beer-name" id="result-name">Loading...</h2>
+        <p class="beer-style" id="result-style">Loading...</p>
+        
+        <div class="stats-grid">
+          <div class="stat-box calories">
+            <div class="stat-value" id="result-calories">0</div>
+            <div class="stat-label">CALORIES</div>
+          </div>
+          <div class="stat-box steps">
+            <div class="stat-value" id="result-steps">0</div>
+            <div class="stat-label">STEPS TO BURN</div>
+          </div>
+        </div>
+        
+        <div class="confidence">
+          <p class="confidence-text">AI Confidence: <span id="confidence-percent">0%</span></p>
+          <div class="confidence-bar">
+            <div class="confidence-fill" id="confidence-fill" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+      
+      <button class="retry-btn" id="retry-btn">TRY ANOTHER BEER</button>
+      <button class="try-another-btn" id="try-another-btn">👀 TRY ANOTHER MATCH</button>
+      <button class="random-btn" id="random-btn">🎲 RANDOM BEER</button>
+    </div>
+    
+
+    
+    <div class="footer">
+      Made with <span>🍺</span> in Stockholm | No API keys required | Your beer photo stays on your device
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.10.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.0/dist/mobilenet.min.js"></script>
+  <script src="beers.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
