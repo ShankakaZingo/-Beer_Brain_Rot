@@ -50,20 +50,21 @@ async function loadModel() {
   isModelLoading = false;
 }
 
+const AUDIO_URL = 'https://shankakazingo.github.io/-Beer_Brain_Rot/faaaahh.mp3?v=2';
+
 function playSound() {
-  audio.src = 'https://shankakazingo.github.io/-Beer_Brain_Rot/faaaahh.mp3';
+  audio.src = AUDIO_URL;
   audio.volume = 0.7;
+  audio.load();
   audio.play().catch(err => {
     console.log('Audio play failed:', err);
   });
 }
 
 function preloadAudio() {
-  audio.src = 'https://shankakazingo.github.io/-Beer_Brain_Rot/faaaahh.mp3';
+  audio.src = AUDIO_URL;
   audio.load();
 }
-
-document.addEventListener('click', preloadAudio, { once: true });
 
 function extractDominantColor(img) {
   const canvas = document.createElement('canvas');
