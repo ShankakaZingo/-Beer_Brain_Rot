@@ -17,8 +17,8 @@ A stupid fun website that tells you how many calories are in your beer and how m
   - TensorFlow.js MobileNet for image classification
   - Canvas color extraction for precise beer color detection
 - **Local Processing** - Everything runs in your browser (100% free, no API keys needed)
+- **Photo Privacy** - Your beer photos never leave your device
 - **Stockholm Focus** - Database of common draft beers served at Stockholm bars
-- **Smart Matching** - Extracts dominant color from photo, matches to beer styles
 
 ## Tech Stack
 
@@ -29,9 +29,13 @@ A stupid fun website that tells you how many calories are in your beer and how m
 
 ## How To Run
 
-1. Download/clone this project
+1. Visit: **https://shankakazingo.github.io/-Beer_Brain_Rot/**
+2. Upload a beer photo
+3. Enjoy your existential crisis
+
+Or run locally:
+1. Download the project
 2. Open `index.html` in any modern browser
-3. Upload a beer photo and enjoy your existential crisis
 
 ## Beer Database
 
@@ -46,6 +50,11 @@ Focused on draft beers commonly served in Stockholm bars:
 - `style.css` - Brain-rot styling
 - `app.js` - TensorFlow.js + color analysis + matching logic
 - `beers.js` - Stockholm beer database with calories
+- `faaaahh.mp3` - The iconic sound effect
+
+## Privacy
+
+Your beer photos are processed 100% locally in your browser. Nothing is ever uploaded to any server.
 
 ## Known Issues
 
